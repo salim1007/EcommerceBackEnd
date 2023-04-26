@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
 
+    public function index(){
+        $products = Product::all();
+        return response()->json([
+            'status'=>200,
+            'products'=>$products
+        ]);
+    }
+
     public function store(Request $request){
 
         $validator = Validator::make($request->all(),[
@@ -21,7 +29,7 @@ class ProductController extends Controller
             'selling_price'=>'required|max:20',
             'original_price'=>'required|max:20',
             'qty'=>'required|max:4',
-            'image'=>'required|file|max:2048',
+            'image'=>'required|image|mimes:jpeg,jpg,png,gif,svg,bmp|max:2048',
 
         ]);
 

@@ -22,6 +22,7 @@ Route::get('all-category', [CategoryController::class, 'allcategory']);
 
 //Products
 Route::post('store-product', [ProductController::class, 'store']);
+Route::get('view-product', [ProductController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

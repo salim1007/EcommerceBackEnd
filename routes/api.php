@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\FrontendController;
 use App\Http\Controllers\API\ProductController;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -9,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register',[AuthController::class, 'register']);
 Route::post('login',[AuthController::class, 'login']);
+
+Route::get('getCategory', [FrontendController::class, 'category']);
+Route::get('fetchProduct/{slug}', [FrontendController::class, 'product']);
+Route::get('view-productdetail/{category}/{product}', [FrontendController::class, 'viewProduct']);
 
 
 //Category

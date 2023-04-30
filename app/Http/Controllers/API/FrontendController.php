@@ -9,61 +9,62 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function category(){
-        $category = Category::where('status','0')->get();
+    public function category()
+    {
+        $category = Category::where('status', '0')->get();
         return response()->json([
-            'status'=>200,
-            'category'=>$category,
+            'status' => 200,
+            'category' => $category,
         ]);
     }
-    public function product($slug){
-        $category = Category::where('slug', $slug)->where('status','0')->first();
-        if($category){
-            $product = Product::where('category_id', $category->id)->where('status','0')->get();
-            if($product){
+    public function product($slug)
+    {
+        $category = Category::where('slug', $slug)->where('status', '0')->first();
+        if ($category) {
+            $product = Product::where('category_id', $category->id)->where('status', '0')->get();
+            if ($product) {
                 return response()->json([
-                    'status'=>200,
-                    'product_data'=>[
-                        'product'=>$product,
-                        'category'=>$category,
+                    'status' => 200,
+                    'product_data' => [
+                        'product' => $product,
+                        'category' => $category,
                     ],
                 ]);
-
-            }else{
+            } else {
                 return response()->json([
-                    'status'=>400,
-                    'message'=>'No Such Product Found',
+                    'status' => 400,
+                    'message' => 'No Such Product Found',
                 ]);
             }
-        }else{
+        } else {
             return response()->json([
-                'status'=>404,
-                'message'=>'No Such Category Found',
+                'status' => 404,
+                'message' => 'No Such Category Found',
             ]);
         }
     }
-    public function viewProduct($category, $product){
-        $category = Category::where('slug', $category)->where('status','0')->first();
-        if($category){
-            $product = Product::where('category_id', $category->id)->where('slug', $product)->where('status','0')->first();
-            if($product){
+    public function viewProduct($category, $product)
+    {
+        $category = Category::where('slug', $category)->where('status', '0')->first();
+        if ($category) {
+            $product = Product::where('category_id', $category->id)->where('slug', $product)->where('status', '0')->first();
+            if ($product) {
                 return response()->json([
-                    'status'=>200,
-                    'product'=>$product,
-                     
-                    
-                ]);
+                    'status' => 200,
+                    'product' => $product,
 
-            }else{
+
+                ]);
+            } else {
                 return response()->json([
-                    'status'=>400,
-                    'message'=>'No Product Available',
+                    'status' => 400,
+                    'message' => 'No Product Available',
                 ]);
             }
-        }else{
+        } else {
             return response()->json([
-                'status'=>404,
-                'message'=>'No Such Category Found',
+                'status' => 404,
+                'message' => 'No Such Category Found',
             ]);
         }
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\FrontendController;
 use App\Http\Controllers\API\ProductController;
@@ -14,6 +15,8 @@ Route::post('login',[AuthController::class, 'login']);
 Route::get('getCategory', [FrontendController::class, 'category']);
 Route::get('fetchProduct/{slug}', [FrontendController::class, 'product']);
 Route::get('view-productdetail/{category}/{product}', [FrontendController::class, 'viewProduct']);
+
+Route::post('add-to-cart', [CartController::class, 'addToCart']);
 
 
 //Category

@@ -28,9 +28,10 @@ class Product extends Model
         'status',
         
     ];
-     
+      //Relation call...........
     protected $with = ['category'];
     public function category(){
+        //$this->belongsTo(Model to fetch data from::class, 'foreign_key_id', 'primary_key_id');......format.....
         return $this->belongsTo(Category::class,'category_id', 'id' );
     }
 }
